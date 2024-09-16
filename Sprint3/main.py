@@ -45,6 +45,7 @@ while True:
             print("Cadastro de funcionario concluido")
         if op1 == 4:
             print("Voltando")
+            break
           
     if intencao == 2:
         op2 = input ("Digite qual lista quer ver \n1 Para cliente\n2 para veiculos\n3 para funcionario\n4 para sair do programa")
@@ -63,4 +64,100 @@ while True:
             read_funcionarios(id=id)
         if op2 == 4:
             print("Voltando")
-              
+            break
+    if intencao == 3 :
+        op3 = int(input("Qual informações voce quer mudar ?\n1 para cliente\n2 para veiculo\n3 para funcionario\n 4 para voltar "))
+        while op3 != 1 or op3 != 2 or op3 != 3 or op3 != 4:
+            print("opcao invalida")
+            op3 = int(input("Qual informações voce quer mudar ?\n1 para cliente\n2 para veiculo\n3 para funcionario\n 4 para voltar "))
+        if op3 == 1:
+            id=input("coloque o id do cliente")
+            i = input("O que deseja alterar no usuario ?\n 1 nome\n2 data de nascimento\n3 email ?\n")
+            while i != 1 or i != 2 or i != 3:
+                print("opcao invalida") 
+                i = input("O que deseja alterar no usuario ?\n 1 nome\n2 data de nascimento\n3 email ?\n")
+            if i ==1:
+                attNome = input("Digite o nome completo que deseja colocar")
+            if i == 2 :
+                attDtNascimento = input("coloque a nova data de nascimento")
+            if i ==3 :
+               attEmail = input("digite o novo email que deseja colocar")
+            update_cliente(id=id, nmCompleto=attNome, dtNascimento=attDtNascimento, email=attEmail)
+            print("informações atualizadas")
+            if i == 4:
+                print("voltando")
+                break
+
+        if op3 == 2:
+            id= input("Digite o seu id ")
+
+            i2 = input("O que deseja alterar no veiculo ?\n 1 nome do dono\n2 placa\n3 problema \n4 dia que ocorreu o Problema\n5 estado atual do veiculo\n 6 para sair ")
+            while i2 != 1 or i2 != 2 or i2 != 3 or i2 != 4 or i2 != 5:
+                print("opcao invalida") 
+                i2 = input("O que deseja alterar no veiculo ?\n 1 nome do dono\n2 placa\n3 problema \n4 dia que ocorreu o Problema\n5 estado atual do veiculo\n6 para sair ")
+            if i2 ==1:
+                attDono = input("Digite o novo nome do dono ")
+            if i2 ==2:
+                attPlaca= input("Digite a placa")
+            if i2 ==3:
+                attProblema= input("DIgite qual o problema ")
+            if i2 ==4:
+                attDiaProblema = input("Digite o dia do problema ")
+            if i2 ==5:
+                attSituacao = input("Digite a situacao atual do veiculo")
+            if i2 ==6:
+                print("voltando")
+                break
+            update_veiculo(id= id,nmCompleto=attDono, placa=attPlaca, problema=attProblema, dtProblema=attDiaProblema,dtResolvido=attSituacao)
+
+        if op3 == 3:
+            id = input("Digite o id de funcionario que vai alterar")
+            i3 = input("O que deseja alterar no funcionario ?\n 1 nome do funcionario\n2 idade\n3 cpf \n4 endereco \n5 email\n 6 para sair ")
+            while i3 != 1 or i3 != 2 or i3 != 3 or i3 != 4 or i3 != 5:
+                print("opcao invalida") 
+                i3 = input("O que deseja alterar no funcionario ?\n 1 nome do funcionario\n2 idade\n3 cpf \n4 endereco \n5 email\n 6 para sair ")
+            if i3 ==1:
+                attNome = input("Digite o nome do funcionario")
+            if i3 == 2:
+                attIdade = input("Digite a idade do funcionario")
+            if i3 ==3:
+                attCpf = input("Digite o cpf do funcionario")
+            if i3 == 4:
+                attEndereco = input("Digite o endereco do funcionario ")
+            if i3 == 5:
+                attEmail = input("Digite o email do funcionario ")
+            if i3 == 6:
+                print("Voltando")
+                break
+            update_Funcionario(id, nmCompleto=attNome, idade=attIdade , cpf=attCpf, endereco=attEndereco, email=attEmail)
+        if op3 ==4 :
+            print("voltando")
+            break 
+    if intencao == 4:
+            id= input("Digite o seu id ")
+
+            i4 = input("O que deseja deletar ?\n 1 usuario\n2 funcionario\n3 veiculo\n4 para sair")
+            while i4 != 1 or i4 != 2 or i4 != 3 or i4 != 4 or i4 != 5:
+                print("opcao invalida") 
+                i4 = input("O que deseja deletar ?\n 1 usuario\n2 funcionario\n3 veiculo\n4 para sair")
+
+            if i4 == 1:
+                id = input("Digite o id")
+                indice = input("Digite o indice de quem vai ser excluido")
+                delete_usuario(id=id, indice=indice)
+
+            if i4 ==2:
+                id = input("digite o id ")
+                indice = input("Digite o indice do funcionario que deseja excluir ")
+                delete_funcionario(id = id, indice=indice)
+
+            if i4 ==3:
+                id = input("Digite seu id ")
+                indice = input("Digite o indice do carro que deseja excluir")
+
+            if i4 == 4:
+                print("Voltando")
+                break
+    if intencao == 5:
+        print("Fechando programa")
+        break
