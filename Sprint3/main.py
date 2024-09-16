@@ -5,86 +5,62 @@ from crudPorto import *
 #print para receber o usuario no programa
 print("Bem vindo ao Porta Car-Fix \n A Central de auxilio aos Motoristas feita para voce")
 
-#função para caso o usuario escolha fazer cadastro no programa
-def cadastro():
-    while True:
-        cadastro = str(input("ja tem uma conta ? \n"))
-        #laço caso o usuario escolha uma função que não esta presente nas opções
-        while cadastro != "sim" and cadastro != "não":
-            cadastro = str(input("ja tem uma conta ? \n"))
-        if cadastro == "sim":
-            email = str(input("Digite seu email: "))
-            senha = str(input("Digite sua senha: "))
-        else:
-
-            print("Crie sua conta aqui")
-
-            nomes.append(str(input("Digite seu nome:\n")))
-            emails.append(str(input("Digite seu email:\n")))
-            senha = str(input("Digite sua senha:\n"))
-            confirmSenha = str(input("Confirme sua senha:\n"))
-            while senha != confirmSenha:
-                print("ERRO!Algum campo foi preenchido errado ")
-                senha = str(input("Digite sua senha:\n"))
-                confirmSenha = (str(input("Confirme sua senha:\n")))
-            print("Seu cadastro foi realizado com sucesso!")
-            cadastrarVeiculo = str(input("Deseja cadastrar algum veiculo ?"))
-            match cadastrarVeiculo:
-                case "sim":
-                    placas.append(str(input("Para Começarmos, digite os digitos da sua placa:\n")))
-                case "não":
-                    print("Tudo bem !! Obrigado por utilizar o Porta Car-Fix, volte sempre que precisar de uma ajuda com seus veiculos ")
-                case _:
-                    print("Opção não cadastrada")
-
-
-            print(f"O email cadastrado foi {emails}")
-
-##função para alterar alguma informação cadastrada
-def mudarInfor ():
-    print("Escolha a informação que deseja alterar:")
-
-#função caso o usuario escolha ver os planos do nosso serviço
-def planos():
-    while True:
-        planos = str(input("Quer visualizar todos nossos planos ? \n"))
-        #laço caso o usuario escolha uma opção que não esta disponivel
-        while planos != "sim" and planos != "não":
-            planos = str(input("Quer visualizar todos nossos planos ? \n"))
-        if planos == "sim":
-            print("Temos o planos de: Cobertura Total, que concede acesso a todos serviços dentro do nosso site \nCobertura Parcial, que vai de acordo com a sua região, automovel, e equipamento\nCobertura Mecânica, nesse plano tera acesso apenas acesso a analise de um mecanico ")
-        else:
-            print("para vizualiar seus planos faça cadastro")
-            
-        break
-
-#função caso o usuario escolha mandar uma duvida para a central de atendimento
-def duvida():
-    while True:
-        duvidas = str(input("digite sua duvida, referente ao auto atendimento, a resposta pode ser rapida ou levar horas: "))
-        break
-
-#função caso o usuario queira dar um feedback para a empresa
-def feedback():
-    while True:
-        feedbacks = str(input("Digite aqui seu feedback para que podemos melhorar nosso serviço e oferecer uma melhor entrega de resultados: "))
-        break
-
 while True:
+    intencao = int(input("Digite o que deseja fazer \n1 para adicionar informacoes\n2 para ver as listas\n3 para atualizar dados\n4 para deletar dados\n5 para fechar o programa: "))
+    while intencao != 1 or intencao != 2 or intencao != 3 or intencao != 4 or intencao !=5:
+        print("Opcao invalida, tente digitar apenas 1,2,3 ou 4")
+        intencao = int(input("Digite o que deseja fazer \n1 para adicionar informacoes\n2 para ver as listas\n3 para atualizar dados\n4 para deletar dados: "))
+    if intencao == 1:
+        op1 = int(input("O que deseja adicionar?\n1 para usuario\n2 para veiculo\n3 para funcionario\n4 para sair\n"))
+        while op1 != 1 or op1 != 2 or op1 != 3 or op1 != 4:
+            print("Opcao invalida, tente digitar apenas 1,2 ou 3 para acessar as informacoes")
+            op1 = int(input("O que deseja adicionar?\n1 para usuario\n2 para veiculo\n3 para funcionario\n4 para sair\n"))
+        if op1 == 1:
+            id = input("Digite o codigod de identificacao do cliente: ")
+            nmCompleto = input("Digite o nome completo do cliente: ")
+            dtNascimento = input("Digite a data de nascimento do cliente: ")
+            email = input("Digite o email do usuario: ")
 
-    intencao = str(input("O que deseja fazer ? \n Você pode acessar seu perfil digitando '1' \n Você pode ver as opções de planos disponiveis e quais você tem acesso digitando '2' \n Alguma duvida digite '3'\n Caso queira dar um feedback digite '4' \n "))
-    
-    while intencao != "1" and intencao != "2" and intencao != "3" and intencao != "4":
-    #laço de repetiçao para caso o usuario insira uma opção não cadastrada
-        intencao  = str(input("Aqui temos algumas opções possiveis dentro do nosso site\n Você pode acessar seu perfil digitando '1', caso queira mudar alguma informção de cadastro digite 'alterar'\n Você pode ver as opções de planos disponiveis e quais você  tem acesso digitando '2'\n Alguma duvida digite '3'\n Caso queira dar um feedback digite '4' \n "))
-    match intencao:
-        case "1":cadastro()
+            creat_Cadastro_Usuario(id=id, nmCompleto=nmCompleto, dtNascimento=dtNascimento, email=email)
+            print("Cadastro realizado com sucesso!")
+        if op1 ==2:
+            id= input("Digite o id de quem esta cadastrando o veiculo: ")
+            dono = input("Digite o nome do completo do dono do carro: ")
+            placa = input("Digite a placa do carro: ")
+            problema= input("Digite qual o problema do veiculo: ")
 
-        case "2":planos()
+            creat_Veiculo(id=id,nmCompleto=dono,placa=placa, problema=problema)
+            print("Cadastro de veiculo concluido")
 
-        case "3":duvida()
-
-        case "4":feedback()
-
-        case _:
-            print("Opção não cadastrada")
+        if op1 == 3:
+            id = input("Digite o codigo de identificacao do funcionario")
+            nmCompleto = input("Digite o nome completo do funcionario")
+            idade = input("Digite a idade completa do funcionario")
+            cpf= input("Digite o cpf do funcionario")
+            endereco= input("Digite o endereco do funcionario")
+            email = input("Digite o email do funcionario")
+            if idade < 18:
+                print("Idade invalida, o funcionario precisa ter mais de 18 anos")
+            creat_Cadastro_Funcionario(id=id, nmCompleto= nmCompleto,idade=idade, cpf=cpf, endereco=endereco, email=email)
+            print("Cadastro de funcionario concluido")
+        if op1 == 4:
+            print("Voltando")
+          
+    if intencao == 2:
+        op2 = input ("Digite qual lista quer ver \n1 Para cliente\n2 para veiculos\n3 para funcionario\n4 para sair do programa")
+        while op2 != 1 and op2 != 2 and op2 != 3 and op2 != 4:
+            print("opcao invalida")
+            op2 = input ("Digite qual lista quer ver \n1 Para cliente\n2 para veiculos\n3 para funcionario\n4 para sair do programa")
+        if op2 == 1:
+            id = input ("Digite o id de quem vai visualizar a lista de usuarios")
+            read_funcionarios(id=id)
+        if op2 ==2:
+            id = input ("Digite o id de quem vai visualizar a lista de veiculos")
+            placa= input("Digite a plca do carro que quer visualizar ")
+            read_veiculos(id=id, placa=placa)
+        if op2 ==3 :
+            id = input("Digite o id do funcionario ")
+            read_funcionarios(id=id)
+        if op2 == 4:
+            print("Voltando")
+              

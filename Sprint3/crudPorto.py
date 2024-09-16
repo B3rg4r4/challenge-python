@@ -36,16 +36,16 @@ def creat_Veiculo(id, nmCompleto, placa, problema, dtProblema, dtResolvido="Aind
         "Data de Resolvido": dtResolvido
         }
         listaVeiculos.append(veiculo)
-        print("Esse foi o usuario " + listaVeiculos.index(placa))
+        print("Esse foi o veiculo " + listaVeiculos.index(placa))
         return len(listaVeiculos)
     else:
         print("Nao foi possivel cadastrar o veiculo")
 
-def creat_Cadastro_Funcionario(id, nmcompleto, idade , cpf, endereco, email , dtCadastro ):
+def creat_Cadastro_Funcionario(id, nmCompleto, idade , cpf, endereco, email , dtCadastro ):
     dtCadastro= dt.now()
     funcionario = {
         "Id" : id,
-        "Nome Completo" : nmcompleto,
+        "Nome Completo" : nmCompleto,
         "Idade" : idade,
         "CPF" : cpf,
         "Endereco" : endereco,
@@ -53,26 +53,27 @@ def creat_Cadastro_Funcionario(id, nmcompleto, idade , cpf, endereco, email , dt
         "Data de Cadastro" : dtCadastro
     }
     listaFuncionarios.append(funcionario)
-    print("Esse foi o usuario " + listaFuncionarios.index(id))
+    print("Esse foi o funcionario " + listaFuncionarios.index(id))
     return len(listaFuncionarios)
 
 #criacao de read dentro do programa, exibindo os usuarios, veiculos e funcionarios cadastrados
 
 def read_Usuarios(id):
     if id in listaUsuarios:
-        indice = listaFuncionarios.index(id)
+        indice = listaUsuarios.index(id)
         print(listaUsuarios[indice])
     else:
         print("Usuario não encontrado")
         return listaUsuarios
     
-def read_veiculos(placa):
-    if placa in listaVeiculos:
-        indice = listaVeiculos.index(placa)
-        return print(listaVeiculos[indice])
-    else:
-        print("Veiculo não encontrado")
-        return listaVeiculos
+def read_veiculos(id,placa):
+    if id in listaFuncionarios or id in listaUsuarios:
+        if placa in listaVeiculos:
+            indice = listaVeiculos.index(placa)
+            return print(listaVeiculos[indice])
+        else:
+            print("Veiculo não encontrado")
+            return listaVeiculos
 
 def read_funcionarios(id):
     if id in listaFuncionarios:
@@ -114,11 +115,11 @@ def update_veiculo (id, nmCompleto="", placa="", problema="", dtProblema="", dtR
     else:
         return False
 
-def update_Funcionario(id, nmcompleto="", idade="" , cpf="", endereco="", email=""):
+def update_Funcionario(id, nmCompleto="", idade="" , cpf="", endereco="", email=""):
     if id in listaFuncionarios:
         indice = listaFuncionarios.index(id)
-        if nmcompleto != "":
-            listaFuncionarios[indice].update({"Nome Completo" : nmcompleto})
+        if nmCompleto != "":
+            listaFuncionarios[indice].update({"Nome Completo" : nmCompleto})
         if idade != "":
             listaFuncionarios[indice].update({"Idade" : idade})
         if cpf != "":
@@ -130,8 +131,6 @@ def update_Funcionario(id, nmcompleto="", idade="" , cpf="", endereco="", email=
         return True
     else:
         return False
-
-
 
 #criacao de delete dentro do programa para deletar informacoes
 
